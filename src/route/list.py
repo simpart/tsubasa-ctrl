@@ -1,6 +1,9 @@
-from route import app
+from route import flask_app
+from app.response import *
+from app.list import *
 
-@app.route('/api/v1/list', methods=['GET'])
-def list_items():
+@flask_app.route('/api/v1/list/<path:path>', methods=['GET'])
+def list_items(path):
     # /api/v1/listの処理
-    return "List of items"
+    data = get_list('/' + path)
+    return response(data)
